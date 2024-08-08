@@ -7,7 +7,7 @@ export default function Profile() {
     <SafeAreaView className="bg-white flex-1">
       <StatusBar barStyle="dark-content"/>
       <View>
-        <Text>Profile</Text>
+        <Text className="text-lg font-bold text-left mt-14 pt-8 ml-10"></Text>
       </View>
     </SafeAreaView>
   )
