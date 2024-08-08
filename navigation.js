@@ -10,16 +10,35 @@ import SignIn from './Auth/SignIn';
 import OTPVerify from './Auth/OTPVerify';
 import RegisterUser from './Auth/RegisterUser';
 import Dashboard from './components/Dashboard/Dashboard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
-  const token = "testTokenJW";
+  const [initialRoute, setInitialRoute] =useState('SignUp')
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem('userToken');
+      if(token){
+        setInitialRoute('Dashboard')
+      }
+      setLoading(false)
+    }
+    checkToken()
+  }, [])
+
+  if(loading){
+    return null;
+  }
+
   return (
     <NavigationContainer>
         <Stack.Navigator screenOptions={{
             headerShown: false,
-        }}>
-            <Stack.Screen name={token === "testTokenJWT" ? "Home" : "SignUp"} component={token == "testTokenJWT" ? HomeScreen : SignUp} />
+        }} initialRouteName={initialRoute}>
+            <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="SignIn" component={SignIn} />
             <Stack.Screen name="OTP" component={OTPVerify} />
             <Stack.Screen name="Register" component={RegisterUser} />

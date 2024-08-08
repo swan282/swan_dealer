@@ -1,14 +1,16 @@
-import SIcon from "../assets/tree.png";
 import axios from "axios";
+import SIcon from "../assets/tree.png";
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform,ActivityIndicator } from 'react-native';
 
 const SignUp = () => {
     const navigation = useNavigation();
     const [email, setEmail] = useState(null);
+    const [loading, setLoading] = useState(false);
     const handleEmail = async () => {
+        setLoading(true);
         try {
             const response = await axios.post('http://192.168.1.4:8800/api/dist/reg/dealer-send-otp', {email})
             if(response.data.status){
@@ -18,10 +20,9 @@ const SignUp = () => {
             }
         } catch (error) {
             console.log('OTP test',error.message);
+        } finally {
+            setLoading(false)
         }
-    }
-    const handleLogIn = async () => {
-
     }
     return (
         <KeyboardAvoidingView
@@ -50,12 +51,17 @@ const SignUp = () => {
                         keyboardType="email-address"
                         autoCapitalize="none"
                     />
-                    <TouchableOpacity 
-                        className="p-4 ml-6 mr-6 rounded-md" 
+                     <TouchableOpacity
+                        className="p-4 ml-6 mr-6 rounded-md"
                         style={{ backgroundColor: '#522258' }}
                         onPress={handleEmail}
+                        disabled={loading} // Disable button while loading
                     >
-                        <Text className="text-white text-center text-lg">Get OTP</Text>
+                        {loading ? (
+                            <ActivityIndicator color="#fff" /> // Show loading indicator
+                        ) : (
+                            <Text className="text-white text-center text-lg">Get OTP</Text>
+                        )}
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>

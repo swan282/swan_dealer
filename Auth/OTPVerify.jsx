@@ -3,13 +3,16 @@ import { StatusBar } from 'expo-status-bar';
 import axios from "axios";
 import SIcon from "../assets/otp_2.png";
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
 
 export default function OTPVerify({ route }) {
   const { email } = route.params;
   const navigation = useNavigation();
   const [otp, setOtp] = useState();
+  const [loading, setLoading] = useState(false);
+
   const handleOTP = async () =>{
+    setLoading(true);
     try {
       const response = await axios.get('http://192.168.1.4:8800/api/dist/reg/otp-verify', {
         params: {
@@ -19,12 +22,14 @@ export default function OTPVerify({ route }) {
       }); 
 
       if(response.data.status){
-          navigation.navigate('Register');
+          navigation.navigate('Register', {email});
       }else{
           console.log(response.data);   
       }
     } catch (error) {
         console.log('OTP test',error.message);
+    }finally{
+      setLoading(false);
     }
   }
   return (
@@ -51,7 +56,11 @@ export default function OTPVerify({ route }) {
             onPress={handleOTP}
             style={{ backgroundColor: '#522258' }}
           >
-          <Text className="text-white text-center text-lg">Verify OTP</Text>
+          {loading ? (
+            <ActivityIndicator color="#fff" /> // Show loading indicator
+          ) : (
+            <Text className="text-white text-center text-lg">Verify OTP</Text>
+          )}
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
           <Text className="mt-5 mb-11 text-sm text-center">

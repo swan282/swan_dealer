@@ -2,24 +2,40 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import SIcon from "../assets/regis.png";
-import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
+import axios from 'axios';
 
-export default function RegisterUser() {
-
+export default function RegisterUser({route}) {
+    const {email} = route.params;
     const navigation = useNavigation();
     const [userData, setUserData] = useState({
         d_name: "",
-        d_email: "",
+        d_email: email,
+        d_phone: "",
         d_s_name: "",
         d_zip: "",
         d_password: "",
         d_location: "",
-        d_cnf_password: "",
     });
+    const [loading, setLoading] = useState(false);
+    const handleSignUp = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.post('http://192.168.1.4:8800/api/dist/reg/dealer-create', userData);
 
-    const handleSignUp = () => {
-        console.log(userData);
-        navigation.navigate('Dashboard');
+            if(response.data.status){
+                await AsyncStorage.setItem('userToken', response.data.token)
+                navigation.navigate('Dashboard');
+            }else{
+                console.log(response.data,userData);
+            }
+        } catch (error) {
+            console.log(error.message);
+        }finally {
+            setLoading(false);
+        }
+        
     };
 
     const handleInputChange = (name, value) => {
@@ -60,6 +76,15 @@ export default function RegisterUser() {
                     autoCapitalize="none"
                 />
                 <TextInput
+                    placeholder="Phone Number"
+                    placeholderTextColor="#9CA3AF"
+                    style={styles.input}
+                    value={userData.d_phone}
+                    onChangeText={(text) => handleInputChange('d_phone', text)}
+                    keyboardType="numeric"
+                    autoCapitalize="none"
+                />
+                <TextInput
                     placeholder="Zip Code"
                     placeholderTextColor="#9CA3AF"
                     style={styles.input}
@@ -81,7 +106,11 @@ export default function RegisterUser() {
                     style={styles.button} 
                     onPress={handleSignUp}
                 >
-                    <Text style={styles.buttonText}>Register</Text>
+                    {loading ? (
+                        <ActivityIndicator color="#fff" /> // Show loading indicator
+                    ) : (
+                        <Text className="text-white text-center text-lg">Register</Text>
+                    )}
                 </TouchableOpacity>
             </View>
             <View style={styles.imageContainer}>

@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function FeaturedRow() {
+export default function Tabs() {
   return (
     <View>
-      <Text>FeaturedRow</Text>
+      <Text>Tabs</Text>
     </View>
   )
 }
