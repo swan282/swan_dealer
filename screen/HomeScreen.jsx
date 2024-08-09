@@ -1,16 +1,34 @@
-import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
+import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
-import SIcon from "../assets/stat_2.png";
-import userIcon from "../assets/user_1.png";
 import avatar from "../assets/avatar.jpeg";
-import { tw } from 'nativewind';
 import * as Icon from "react-native-feather";
-import FeaturedRow from '../components/featured/FeaturedRow';
-import { details, LatestProduct } from '../constants/sales';
-import Card from '../components/Card/Card';
+import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
 
 
 export default function HomeScreen() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = await AsyncStorage.getItem('userToken')
+      try {
+        const response = await axios.get('http://192.168.1.4:8800/api/dist/login-user', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log(response.data);
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+    console.log(user);
+
+    fetchUser();
+  }, []);
   return (
     <View className="">
       <StatusBar barStyle="dark-content"/>
