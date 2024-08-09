@@ -74,28 +74,84 @@ export default function HomeScreen() {
             {/* <Icon.ShoppingCart stroke="black" width={20} height={20} /> */}
             <Text>20</Text>
           </View>
-          <Text style={styles.circleText}>Total Pending</Text>
+          <Text style={styles.circleText}>Pending</Text>
         </View>
         
         <View style={styles.circleItem}>
           <View style={styles.circle}>
-            {/* <Icon.Inbox stroke="black" width={20} height={20} /> */}
             <Text>30</Text>
           </View>
-          <Text style={styles.circleText}>Total Products</Text>
+          <Text style={styles.circleText}>All Products</Text>
         </View>
       </View>
-
+      <View style={styles.divider} />
+      <View className="">
+        <Text style={styles.topList}>Top Rated Products</Text>
+      </View>
+      <View style={styles.buttomContainer}>
+        <Text style={styles.productName}>Product Name: Hair Colour</Text>
+        <Text style={styles.productPrice}>Price: 200</Text>
+        <Text style={styles.productPrice}>Rating: 5</Text>
+        <Text style={styles.productPrice}>Qty: 20</Text>
+        <Text style={styles.productPrice}>Brand: Lorial Paris</Text>
+        <Text style={styles.comments}>Comments</Text>
+        <Text style={styles.productPrice}>1. Nice Product</Text>
+        <Text style={styles.productPrice}>2. Good Product</Text>
+        <Text style={styles.productPrice}>3. Quality Product From Shop</Text>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  comments: {
+    marginTop: 10,
+    marginLeft: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  divider: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginVertical: 10,
+    marginLeft: 40,
+    marginRight: 40,
+    marginTop: 20,
+    marginBottom: 20
+  },
+  topList:{
+    marginLeft: 40,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  productName: {
+    marginTop: 15,
+    marginLeft: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  productPrice: {
+    marginLeft: 20,
+    fontSize: 15,
+    // fontWeight: 'bold',
+    color: 'white',
+  },
   profileContainer: {
     borderRadius: 40,
     backgroundColor: '#9daf9b',
     height: 300,
     width: 430
+  },
+  buttomContainer: {
+    marginLeft: 30,
+    marginTop: 15,
+    borderRadius: 16,
+    backgroundColor: '#9daf9b',
+    height: 240,
+    width: 370
   },
   profileContent: {
     flexDirection: 'row',
@@ -109,9 +165,11 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 2,
     marginLeft: 50,
+    marginTop: -50,
   },
   textContainer: {
     marginLeft: 20,
+    marginTop: -50,
   },
   textContainer2: {
     marginLeft: 40,

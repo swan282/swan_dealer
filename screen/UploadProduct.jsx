@@ -130,7 +130,7 @@ export default function UploadProduct() {
           onPress={UploadImage}
           className="ml-10 mt-7 mb-4"
           style={{
-            backgroundColor: '#522258',
+            backgroundColor: '#9daf9b',
             width: 340,
             borderRadius: 10,
             paddingVertical: 10,
@@ -146,7 +146,7 @@ export default function UploadProduct() {
       <TouchableOpacity 
         onPress={handleSubmit}
         className="p-4 ml-10 mr-10 rounded-md" 
-        style={{ backgroundColor: '#522258' }}
+        style={{ backgroundColor: '#9daf9b' }}
       >
         <Text className="text-white text-center text-lg">Upload Product</Text>
       </TouchableOpacity>
