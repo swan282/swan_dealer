@@ -40,7 +40,6 @@ export default function General() {
           <Text style={styles.rowText}>About Us</Text>
           <Icon.ArrowRightCircle style={styles.arrowIcon} stroke="black" />
         </View>
-        
       </View>
       <View style={styles.signOutContainer} >
         <TouchableOpacity className="flex-row" onPress={handleLogOut}>

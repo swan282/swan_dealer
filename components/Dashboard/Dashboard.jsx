@@ -26,38 +26,38 @@ export default function Dashboard() {
         tabBarShowLabel: false,
         tabBarStyle: {
           position: 'absolute',
-          bottom: 20,
-          left: 100,
-          right: 100,
-          elevation: 20, // For Android
-          backgroundColor: '#522258',
-          borderRadius: 60,
-          height: 65,
+          // bottom: 20,
+          // left: 100,
+          // right: 100,
+          // elevation: 20, // For Android
+          backgroundColor: '#9daf9b',
+          // borderRadius: 60,
+          height: 110,
           shadowColor: '#522258', // For iOS
           shadowOffset: { width: 10, height: 5 }, // For iOS
-          shadowOpacity: 1, // For iOS
-          shadowRadius: 6.27, // For iOS
+          // shadowOpacity: 1, // For iOS
+          // shadowRadius: 6.27, // For iOS
         },
       }}
     >
       <Tab.Screen name='Home' component={HomeScreen} options={{
         tabBarIcon: ({focused}) => (
-          <View style={focused ? active_style : ""} className="">
-            <Icon.Home height="30" width="30" stroke={focused? "#522258" : "white" } />
+          <View style={focused ? active_style : ""} className="mt-5">
+            <Icon.Home height="35" width="35" stroke={focused? "#522258" : "white" } />
           </View>
         )
       }}/>
       <Tab.Screen name='UploadProd' component={UploadProduct} options={{
         tabBarIcon: ({focused}) => (
-          <View style={focused ? active_style : ""}>
+          <View style={focused ? active_style : ""} className="mt-5">
             {/* <Icon.PlusCircle height="35" width="35" style={{marginTop: 4.5, marginLeft: 4.5}}  stroke={focused ? 'white' : '#522258'} /> */}
-            <Icon.PlusCircle height={35} width={35} stroke={focused? "#522258" : "white" } />
+            <Icon.PlusCircle height="35" width="35" stroke={focused? "#522258" : "white" } />
           </View>
         ),
       }} />
       <Tab.Screen name='Profile' component={Profile} options={{
         tabBarIcon: ({focused}) => (
-          <View style={focused ? active_style : ""} className="ml-3">
+          <View style={focused ? active_style : ""} className="mt-5">
             <Icon.User height="34" width="34" stroke={focused? "#522258" : "white" } />
           </View>
         )

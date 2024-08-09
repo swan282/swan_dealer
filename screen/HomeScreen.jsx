@@ -12,12 +12,8 @@ import Card from '../components/Card/Card';
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView className="bg-white flex-1 mt-4">
+    <View className="bg-red">
       <StatusBar barStyle="dark-content"/>
-        {/* <Icon.User style={{marginTop: 60, position:'absolute', marginLeft:40}} width="30" height="30" stroke="black" />
-        <Text className="text-lg font-bold text-left mt-14 pt-8 ml-10">Welcome</Text>
-        <Text className="text-3xl font-bold text-left ml-10">Bishal Deb</Text>
-        <Text className="text-sm font-normal text-left ml-10">Your Complete Business Details Done from Swann</Text> */}
         <View style={styles.profileContainer}>
           <View style={styles.profileContent}>
             <Image
@@ -25,76 +21,62 @@ export default function HomeScreen() {
               style={styles.avatar}
             />
             <View style={styles.textContainer}>
-              <Text style={styles.userName}>John Doe</Text>
+              <Text style={styles.userName}>Hello, John Doe</Text>
               <Text style={styles.userEmail}>john.doe@example.com</Text>
             </View>
           </View>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:2}} className="mt-1 ml-2 overflow-visible" >
-          <View className="mt-4 ml-5">
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} className="overflow-visible" contentContainerStyle={{paddingHorizontal: 15}}>
-                {
-                  details.map((data, index) =>{
-                    return (
-                      <FeaturedRow key={index} data={data}/>
-                    )
-                  })
-                }
-            </ScrollView>
-            <ScrollView vertical className="">
-                {
-                  LatestProduct.map((data, index) => {
-                    return (
-                      <Card key={index} data={data}/>
-                    )
-                  })
-                }
-            </ScrollView>
-          </View>
-        </ScrollView>
-        
-      {/* <View className="flex-row item-center mb-14">
-          <Image style={{width:100, height:100}} className="mb-3" source={SIcon}/>
-      </View> */}
-    </SafeAreaView>
+        {/* <View className="flex-row">
+          <Text style={styles.shopName} className="">New Family Shop</Text>
+        </View> */}
+        <View style={styles.textContainer2}>
+              <Text className="mt-3" style={styles.userName}>My Dealer Shop</Text>
+              <Text className="" style={styles.userEmail}>Udharband, Hospital Road, Pin: 788030</Text>
+        </View>
+        <View style={styles.search} className="flex-row">
+          <Icon.Search width="25" height="25" className="ml-2" stroke="black" />
+          <TextInput className="ml-5">Search Your Products</TextInput>
+        </View>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: 'white',
+  shopRow: {
+    flexDirection: 'row',   // Align items in a row
+    alignItems: 'center',   // Center items vertically
+    marginTop: -40,          // Adjust spacing as needed
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 80,
-    marginLeft: 40,
-  },
-  iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    borderColor: 'gray',
-    borderWidth: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerText: {
-    fontSize: 20,
+  shopName: {
+    marginTop: -65,
+    marginLeft: 60,
+    fontSize: 22,
     fontWeight: 'bold',
+    color: '#ffff',
     textAlign: 'center',
-    marginLeft: 75
   },
-  profileContainer: {
+  search: {
     padding: 10,
-    marginLeft: 15,
+    marginTop: 284,
+    marginLeft: 29,
     marginRight: 35,
     marginHorizontal: 6,
-    marginTop: 50,
-    borderRadius: 20,
-    // backgroundColor: '#f0f0f0',
-    height: 140, // Increased height to accommodate email
+    borderRadius: 15,
+    backgroundColor: '#f5f5ed',
+    height: 50,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 }, // X and Y offset
+    shadowOpacity: 0.25, // Shadow transparency
+    shadowRadius: 3.84, // Blur radius
+    elevation: 5, // Required for Android shadow
+    width: 370,
+    position: "absolute"
+  },
+  profileContainer: {
+    borderRadius: 40,
+    backgroundColor: '#9daf9b',
+    height: 300,
+    width: 430
   },
   profileContent: {
     flexDirection: 'row',
@@ -102,26 +84,30 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   avatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 30, // Adjusted for circle
+    width: 80,
+    height: 80,
+    borderRadius: 60, // Adjusted for circle
     borderColor: 'black',
     borderWidth: 2,
-    marginLeft: 20,
+    marginLeft: 50,
   },
   textContainer: {
     marginLeft: 20,
+  },
+  textContainer2: {
+    marginLeft: 40,
+    marginTop: -90,
   },
   userName: {
     marginLeft: 10,
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
   },
   userEmail: {
     marginLeft: 10,
     fontSize: 16,
-    color: 'gray', // Color for email
+    color: 'white', // Color for email
     marginTop: 4,
   },
 });
