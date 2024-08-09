@@ -5,11 +5,14 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function General() {
-  const navigator = useNavigation();
+  const navigation = useNavigation();
   const handleLogOut = async () => {
-    await AsyncStorage.removeItem('userToken');
-    const token = await AsyncStorage.getItem('userToken');
-    navigator.navigate('SignUp')
+    await AsyncStorage.removeItem('userToken')
+    // const token = await AsyncStorage.getItem('userToken');
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'SignIn' }], // Replace 'SignIn' with the correct screen name
+    });
   }
   return (
     <SafeAreaView style={styles.safeArea}>

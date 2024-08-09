@@ -9,26 +9,24 @@ import React, { useEffect, useState } from 'react';
 
 export default function HomeScreen() {
   const [user, setUser] = useState(null);
-
+  const fetchUser = async () => {
+    const token = await AsyncStorage.getItem('userToken');
+    try {
+      const response = await axios.get('http://192.168.1.4:8800/api/dist/login-user', {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      });
+      setUser(response.data.data);
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
+  };
+  
   useEffect(() => {
-    const fetchUser = async () => {
-      const token = await AsyncStorage.getItem('userToken')
-      try {
-        const response = await axios.get('http://192.168.1.4:8800/api/dist/login-user', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        console.log(response.data);
-        setUser(response.data);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
-    console.log(user);
-
     fetchUser();
   }, []);
+  
   return (
     <View className="">
       <StatusBar barStyle="dark-content"/>
@@ -39,18 +37,23 @@ export default function HomeScreen() {
               style={styles.avatar}
             />
             <View style={styles.textContainer}>
-              <Text style={styles.userName}>Hello, John Doe</Text>
-              <Text style={styles.userEmail}>john.doe@example.com</Text>
+              <Text style={styles.userName}>Hello, {user?.d_name}</Text>
+              <Text style={styles.userEmail}>{user?.d_email}</Text>
             </View>
           </View>
         </View>
         <View style={styles.textContainer2}>
-              <Text className="mt-3" style={styles.userName}>My Dealer Shop</Text>
-              <Text className="" style={styles.userEmail}>Udharband, Hospital Road, Pin: 788030</Text>
+          <Text className="mt-3" style={styles.userName}>Business Name: {user?.d_s_name}</Text>
+          <Text className="" style={styles.userEmail}>Location: {user?.d_location}, Pin: {user?.d_zip}</Text>
         </View>
         <View style={styles.search} className="flex-row">
           <Icon.Search width="25" height="25" className="ml-2" stroke="black" />
           <TextInput className="ml-5">Search Your Products</TextInput>
+        </View>
+        <View className="flex-row">
+          <View style={styles.statContainer}>
+
+          </View>
         </View>
     </View>
   )
@@ -92,6 +95,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#9daf9b',
     height: 300,
     width: 430
+  },
+  statContainer: {
+    marginTop: 80,
+    marginLeft: 30,
+    borderRadius: 40,
+    backgroundColor: '#E0E5B6',
+    opacity: 0.5,
+    height: 200,
+    width: 370
   },
   profileContent: {
     flexDirection: 'row',
