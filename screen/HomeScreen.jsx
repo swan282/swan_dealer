@@ -8,9 +8,30 @@ import * as Icon from "react-native-feather";
 import FeaturedRow from '../components/featured/FeaturedRow';
 import { details, LatestProduct } from '../constants/sales';
 import Card from '../components/Card/Card';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
-export default function HomeScreen() {
+export default HomeScreen = async() => {
+
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    const checkToken = async () => {
+      const UToken = await AsyncStorage.getItem('userToken');
+      if(token){
+        setToken(UToken);
+      }
+    }
+    checkToken()
+  }, [])
+  const res = await axios.get('http://192.168.1.4:8800/api/dist/login-user', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  console.log(res.data);
+
   return (
     <View className="bg-red">
       <StatusBar barStyle="dark-content"/>
@@ -26,9 +47,6 @@ export default function HomeScreen() {
             </View>
           </View>
         </View>
-        {/* <View className="flex-row">
-          <Text style={styles.shopName} className="">New Family Shop</Text>
-        </View> */}
         <View style={styles.textContainer2}>
               <Text className="mt-3" style={styles.userName}>My Dealer Shop</Text>
               <Text className="" style={styles.userEmail}>Udharband, Hospital Road, Pin: 788030</Text>
