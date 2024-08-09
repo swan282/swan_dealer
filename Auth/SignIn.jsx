@@ -1,10 +1,34 @@
-import React from 'react'
+import React, {useState} from 'react'
 import SIcon from "../assets/sign_up_5.png";
 import { StatusBar } from 'expo-status-bar';
 
-import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignIn() {
+  const navigator = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(null);
+
+  const handleLogIn = async () => {
+    try {
+      setLoading(true);
+      const data = { d_email: email, d_password: password}
+      const res = await axios.post('http://192.168.1.4:8800/api/dist/reg/dealer-login', data);
+      if(res.data.status){
+        await AsyncStorage.setItem('userToken', res.data.token)
+        navigator.navigate('Dashboard')
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <SafeAreaView className="bg-white flex-1">
        <StatusBar barStyle="dark-content"/>
@@ -21,6 +45,8 @@ export default function SignIn() {
             className="p-4 ml-6 mt-9 mb-5 border border-gray-300 rounded-md"
             style={{ marginRight: 25 }}
             keyboardType="email-address"
+            value={email}
+            onChangeText={setEmail}
             autoCapitalize="none"
           />
           <TextInput
@@ -29,13 +55,22 @@ export default function SignIn() {
             className="p-4 ml-6 border border-gray-300 rounded-md"
             style={{ marginRight: 25 }}
             keyboardType="password"
+            value={password}
+            onChangeText={setPassword}
             autoCapitalize="none"
           />
           <TouchableOpacity 
             className="p-4 ml-6 mr-6 mt-2 rounded-md" 
             style={{ backgroundColor: '#522258' }}
+            onPress={handleLogIn}
           >
-          <Text className="text-white text-center text-lg">Log In</Text>
+            {
+              loading ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <Text className="text-white text-center text-lg">Log In</Text>
+              )
+            }
           </TouchableOpacity>
         </View>
     </SafeAreaView>

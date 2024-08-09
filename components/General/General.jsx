@@ -1,8 +1,16 @@
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Icon from "react-native-feather";
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function General() {
+  const navigator = useNavigation();
+  const handleLogOut = async () => {
+    await AsyncStorage.removeItem('userToken');
+    const token = await AsyncStorage.getItem('userToken');
+    navigator.navigate('SignUp')
+  }
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headerContainer}>
@@ -34,10 +42,11 @@ export default function General() {
         </View>
         
       </View>
-      <View style={styles.signOutContainer} className="flex-row">
-        <Icon.LogOut className="ml-6 mt-5" stroke="red" />
-        <Text style={styles.rowText2} className="font-bold">Log Out</Text>
-        <View style={styles.divider} />
+      <View style={styles.signOutContainer} >
+        <TouchableOpacity className="flex-row" onPress={handleLogOut}>
+          <Icon.LogOut className="ml-6 mt-5" stroke="red" />
+          <Text style={styles.rowText2} className="font-bold">Log Out</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -100,7 +109,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 2,
     backgroundColor: '#f0f0f0',
-    opacity: 0.5,
     borderRadius: 20,
     height: 70,
   }

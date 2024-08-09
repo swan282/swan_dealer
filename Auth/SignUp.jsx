@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform,ActivityIndicator } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignUp = () => {
     const navigation = useNavigation();
@@ -14,6 +15,7 @@ const SignUp = () => {
         try {
             const response = await axios.post('http://192.168.1.4:8800/api/dist/reg/dealer-send-otp', {email})
             if(response.data.status){
+                await AsyncStorage.setItem('userToken', response.data.token)
                 navigation.navigate('OTP', {email});
             }else{
                 console.log(response.data);   

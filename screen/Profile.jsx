@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 80,
     marginLeft: 40,
   },
   iconContainer: {
