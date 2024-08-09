@@ -53,19 +53,39 @@ export default function HomeScreen() {
 
       {/* New Section for Circles with Icons */}
       <View style={styles.circlesContainer}>
-        <View style={styles.circle}>
-          <Icon.PieChart stroke="black" width={20} height={20} />
+        <View style={styles.circleItem}>
+          <View style={styles.circle}>
+            {/* <Icon.PieChart stroke="black" width={20} height={20} /> */}
+            <Text>2000</Text>
+          </View>
+          <Text style={styles.circleText}>Total Sales</Text>
         </View>
-        <View style={styles.circle}>
-          <Icon.ShoppingBag stroke="black" width={20} height={20} />
+        
+        <View style={styles.circleItem}>
+          <View style={styles.circle}>
+            {/* <Icon.ShoppingBag stroke="black" width={20} height={20} /> */}
+            <Text>20</Text>
+          </View>
+          <Text style={styles.circleText}>Total Orders</Text>
         </View>
-        <View style={styles.circle}>
-          <Icon.ShoppingCart stroke="black" width={20} height={20} />
+        
+        <View style={styles.circleItem}>
+          <View style={styles.circle}>
+            {/* <Icon.ShoppingCart stroke="black" width={20} height={20} /> */}
+            <Text>20</Text>
+          </View>
+          <Text style={styles.circleText}>Total Pending</Text>
         </View>
-        <View style={styles.circle}>
-          <Icon.Inbox stroke="black"width={20} height={20} />
+        
+        <View style={styles.circleItem}>
+          <View style={styles.circle}>
+            {/* <Icon.Inbox stroke="black" width={20} height={20} /> */}
+            <Text>30</Text>
+          </View>
+          <Text style={styles.circleText}>Total Products</Text>
         </View>
       </View>
+
     </View>
   )
 }
@@ -129,22 +149,26 @@ const styles = StyleSheet.create({
   circlesContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 90, // Adjust to place it correctly
+    marginTop: 90, 
     paddingHorizontal: 20,
+  },
+  circleItem: {
+    alignItems: 'center', // Center icon and text horizontally
   },
   circle: {
     width: 55,
     height: 55,
-    borderRadius: 27, // Circle shape
-    borderColor: '#CCD5AE',
+    borderRadius: 27,
+    borderColor: '#9daf9b',
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   circleText: {
     marginTop: 5,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 12,
   },
 });
