@@ -5,9 +5,11 @@ import avatar from "../assets/avatar.jpeg";
 import * as Icon from "react-native-feather";
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
   const [user, setUser] = useState();
+  const navigator = useNavigation();
 
   const fetchUser = async () => {
     const token = await AsyncStorage.getItem('userToken');
@@ -46,44 +48,45 @@ export default function HomeScreen() {
         <Text className="mt-3" style={styles.userName}>Business Name: {user?.d_s_name}</Text>
         <Text className="" style={styles.userEmail}>Location: {user?.d_location}, Pin: {user?.d_zip}</Text>
       </View>
-      <View style={styles.search} className="flex-row">
-        <Icon.Search width="25" height="25" className="ml-2" stroke="black" />
-        <TextInput className="ml-5">Search Your Products</TextInput>
-      </View>
+      <TouchableOpacity style={styles.search} className="flex-row" onPress={() =>  navigator.navigate('Upload')}>
+        <Icon.Upload width="20" height="20" className="ml-20" stroke="black" />
+        <TextInput className="ml-2 mx-uto">Upload A New Product</TextInput>
+      </TouchableOpacity>
 
-      {/* New Section for Circles with Icons */}
+      {/* Circles with Icons */}
       <View style={styles.circlesContainer}>
-        <View style={styles.circleItem}>
+        <TouchableOpacity style={styles.circleItem}>
           <View style={styles.circle}>
             {/* <Icon.PieChart stroke="black" width={20} height={20} /> */}
             <Text>2000</Text>
           </View>
           <Text style={styles.circleText}>Total Sales</Text>
-        </View>
+        </TouchableOpacity>
         
-        <View style={styles.circleItem}>
+        <TouchableOpacity style={styles.circleItem}>
           <View style={styles.circle}>
             {/* <Icon.ShoppingBag stroke="black" width={20} height={20} /> */}
             <Text>20</Text>
           </View>
           <Text style={styles.circleText}>Total Orders</Text>
-        </View>
+        </TouchableOpacity>
         
-        <View style={styles.circleItem}>
+        <TouchableOpacity style={styles.circleItem}>
           <View style={styles.circle}>
             {/* <Icon.ShoppingCart stroke="black" width={20} height={20} /> */}
             <Text>20</Text>
           </View>
           <Text style={styles.circleText}>Pending</Text>
-        </View>
+        </TouchableOpacity>
         
-        <View style={styles.circleItem}>
+        <TouchableOpacity style={styles.circleItem}>
           <View style={styles.circle}>
             <Text>30</Text>
           </View>
           <Text style={styles.circleText}>All Products</Text>
-        </View>
+        </TouchableOpacity>
       </View>
+
       <View style={styles.divider} />
       <View className="">
         <Text style={styles.topList}>Top Rated Products</Text>
@@ -202,7 +205,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84, // Blur radius
     elevation: 5, // Required for Android shadow
     width: 370,
-    position: "absolute"
+    position: "absolute",
+    alignItems: "center",
   },
   circlesContainer: {
     flexDirection: 'row',

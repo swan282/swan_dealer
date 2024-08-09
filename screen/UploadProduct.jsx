@@ -46,7 +46,7 @@ export default function UploadProduct() {
     return parts[parts.length - 1];
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     const filename = image ? extractFilename(image) : null;
     const productData = {
       name: productName,

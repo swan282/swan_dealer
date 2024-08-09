@@ -12,6 +12,7 @@ import RegisterUser from './Auth/RegisterUser';
 import Dashboard from './components/Dashboard/Dashboard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
+import UploadProduct from './screen/UploadProduct';
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
@@ -43,6 +44,7 @@ export default function Navigation() {
             <Stack.Screen name="OTP" component={OTPVerify} />
             <Stack.Screen name="Register" component={RegisterUser} />
             <Stack.Screen name="Dashboard" component={Dashboard} />
+            <Stack.Screen name="Upload" component={UploadProduct} />
         </Stack.Navigator>
     </NavigationContainer>
   );
