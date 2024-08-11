@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     borderRadius: 20,
     backgroundColor: '#f0f0f0',
-    height: 140, // Increased height to accommodate email
+    height: 140,
   },
   profileContent: {
     flexDirection: 'row',
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 60,
     height: 60,
-    borderRadius: 30, // Adjusted for circle
+    borderRadius: 30,
     borderColor: 'black',
     borderWidth: 2,
     marginLeft: 20,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   userEmail: {
     fontSize: 16,
-    color: 'gray', // Color for email
+    color: 'gray',
     marginTop: 4,
   },
 });

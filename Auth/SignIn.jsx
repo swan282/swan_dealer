@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import SIcon from "../assets/sign_up_5.png";
 import { StatusBar } from 'expo-status-bar';
 
-import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
+import {View, Text, SafeAreaView, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,14 +18,12 @@ export default function SignIn() {
       setLoading(true);
       const data = { d_email: email, d_password: password}
       const res = await axios.post('http://192.168.1.7:8800/api/dist/reg/dealer-login', data);
-      console.log(res.data);
       if(res.data.status){
-
         await AsyncStorage.setItem('userToken', res.data.token)
         navigator.navigate('Dashboard')
       }
     } catch (error) {
-      console.log(error.message);
+      alert('Sign In Error TC 1');
     } finally {
       setLoading(false);
     }

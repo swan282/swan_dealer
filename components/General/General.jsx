@@ -1,18 +1,10 @@
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Icon from "react-native-feather";
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function General() {
-  const navigation = useNavigation();
   const handleLogOut = async () => {
     alert('Log Out Successful');
-    // await AsyncStorage.removeItem('userToken')
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: 'SignIn' }],
-    // });
   }
   return (
     <SafeAreaView style={styles.safeArea}>

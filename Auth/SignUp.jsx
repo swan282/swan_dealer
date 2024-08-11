@@ -1,10 +1,8 @@
-import axios from "axios";
 import SIcon from "../assets/tree.png";
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform,ActivityIndicator } from 'react-native';
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform,ActivityIndicator } from 'react-native';
 
 const SignUp = () => {
     const navigation = useNavigation();
@@ -15,15 +13,11 @@ const SignUp = () => {
         try {
             if(email === 'swan.developer@gmail.com') {
                 navigation.navigate('OTP', {email});
+            }else{
+                alert('Please enter swan.developer@gmail.com. And Try')
             }
-            // const response = await axios.post('http://192.168.1.7:8800/api/dist/reg/dealer-send-otp', {email})
-            // if(response.data.status){
-            //     navigation.navigate('OTP', {email});
-            // }else{
-            //     console.log(response.data);   
-            // }
         } catch (error) {
-            console.log('OTP test',error.message);
+            alert('Sign UP Error TC 1. Email Trigger OTP')
         } finally {
             setLoading(false)
         }
@@ -38,12 +32,9 @@ const SignUp = () => {
                 <View className="flex-row item-center px-6 pt-11 pb-6 mt-6 ml-7">
                     <Image style={{width:340, height:250}} className="mx-2" source={SIcon}/>
                 </View>
-                {/* <Text className="text-3xl mt-2 mb-14 text-center font-bold mr-1">Welcome To Swann</Text> */}
                 <Text className="text-3xl ml-9 font-bold text-left mr-1">Sign Up as Dealer</Text>
                 <Text className="text-left mt-3 ml-9 mr-1">Signing Up as a Distributor allows you to sell and </Text>
                 <Text className="text-left ml-9 mr-1">get more offers on your products and gain more customers </Text>
-
-                {/* sign in process start */}
                 <View className="w-full">
                     <TextInput
                         placeholder="Enter your Email Address"
@@ -59,10 +50,10 @@ const SignUp = () => {
                         className="p-4 ml-6 mr-6 rounded-md"
                         style={{ backgroundColor: '#522258' }}
                         onPress={handleEmail}
-                        disabled={loading} // Disable button while loading
+                        disabled={loading}
                     >
                         {loading ? (
-                            <ActivityIndicator color="#fff" /> // Show loading indicator
+                            <ActivityIndicator color="#fff" />
                         ) : (
                             <Text className="text-white text-center text-lg">Get OTP</Text>
                         )}
@@ -75,7 +66,5 @@ const SignUp = () => {
         </KeyboardAvoidingView>
     );
 }
-
-const styles = StyleSheet.create({})
 
 export default SignUp;

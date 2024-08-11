@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { useNavigation } from '@react-navigation/native';
 import SIcon from "../assets/regis.png";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
-import axios from 'axios';
 
 export default function RegisterUser({route}) {
     const {email} = route.params;
@@ -22,17 +19,8 @@ export default function RegisterUser({route}) {
     const handleSignUp = async () => {
         try {
             navigation.navigate('Dashboard');
-            // setLoading(true);
-            // const response = await axios.post('http://192.168.1.7:8800/api/dist/reg/dealer-create', userData);
-
-            // if(response.data.status){
-            //     await AsyncStorage.setItem('userToken', response.data.token)
-            //     navigation.navigate('Dashboard');
-            // }else{
-            //     console.log(response.data,userData);
-            // }
         } catch (error) {
-            console.log(error.message);
+            alert('Register Issue');
         }finally {
             setLoading(false);
         }

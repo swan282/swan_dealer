@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import axios from "axios";
 import SIcon from "../assets/otp_2.png";
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
+import {View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,ActivityIndicator } from 'react-native';
 
 export default function OTPVerify({ route }) {
   const { email } = route.params;
@@ -19,22 +18,8 @@ export default function OTPVerify({ route }) {
       }else{
         alert('Please enter 23984576. Because app is still in development mode')
       }
-      console.log(otp);
-      // api call start
-      // const response = await axios.get('http://192.168.1.7:8800/api/dist/reg/otp-verify', {
-      //   params: {
-      //       otp: otp,
-      //       email: email
-      //   }
-      // }); 
-
-      // if(response.data.status){
-      //     navigation.navigate('Register', {email});
-      // }else{
-      //     console.log(response.data);   
-      // }
     } catch (error) {
-        console.log('OTP test',error.message);
+        alert('Something went wrong.From OTP')
     }finally{
       setLoading(false);
     }
@@ -64,7 +49,7 @@ export default function OTPVerify({ route }) {
             style={{ backgroundColor: '#522258' }}
           >
           {loading ? (
-            <ActivityIndicator color="#fff" /> // Show loading indicator
+            <ActivityIndicator color="#fff" />
           ) : (
             <Text className="text-white text-center text-lg">Verify OTP</Text>
           )}

@@ -1,34 +1,11 @@
-import React, { useState,useEffect } from 'react';
-import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
 import avatar from "../assets/avatar.jpeg";
 import * as Icon from "react-native-feather";
-import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, View, Text,Image, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
-  const [user, setUser] = useState();
   const navigator = useNavigation();
-
-  const fetchUser = async () => {
-    // const token = await AsyncStorage.getItem('userToken');
-    // try {
-    //   const response = await axios.get('http://192.168.1.7:8800/api/dist/login-user', {
-    //     headers: {
-    //       authorization: `Bearer ${token}`
-    //     }
-    //   });
-    //   setUser(response.data.data);
-    // } catch (error) {
-    //   console.error('Error fetching user:', error);
-    // }
-  };
-  
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
   return (
     <View className="">
       <StatusBar barStyle="dark-content"/>
@@ -64,7 +41,6 @@ export default function HomeScreen() {
         
         <TouchableOpacity style={styles.circleItem} onPress={()=> navigator.navigate('Orders')}>
           <View style={styles.circle}>
-            {/* <Icon.ShoppingBag stroke="black" width={20} height={20} /> */}
             <Text>20</Text>
           </View>
           <Text style={styles.circleText}>Total Orders</Text>
@@ -72,7 +48,6 @@ export default function HomeScreen() {
         
         <TouchableOpacity style={styles.circleItem} onPress={()=> navigator.navigate('Pending')}>
           <View style={styles.circle}>
-            {/* <Icon.ShoppingCart stroke="black" width={20} height={20} /> */}
             <Text>20</Text>
           </View>
           <Text style={styles.circleText}>Pending</Text>
@@ -90,7 +65,7 @@ export default function HomeScreen() {
       <View className="">
         <Text style={styles.topList}>Top Rated Products</Text>
       </View>
-      <View style={styles.buttomContainer}>
+      <View style={styles.lastContainerContainer}>
         <Text style={styles.productName}>Product Name: Hair Colour</Text>
         <Text style={styles.productPrice}>Price: 200</Text>
         <Text style={styles.productPrice}>Rating: 5</Text>
@@ -147,7 +122,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: 430
   },
-  buttomContainer: {
+  lastContainerContainer: {
     marginLeft: 30,
     marginTop: 15,
     borderRadius: 16,

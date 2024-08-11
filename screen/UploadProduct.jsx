@@ -2,11 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
 import * as Icon from "react-native-feather";
 import * as ImagePicker from 'expo-image-picker';
-import { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { headers } from 'next/dist/client/components/headers';
-import axios from 'axios';
-
+import {useState} from 'react';
 
 export default function UploadProduct() {
   const [image, setImage] = useState(null);
@@ -15,18 +11,6 @@ export default function UploadProduct() {
   const [brandName, setBrandName] = useState('');
   const [quantity, setQuantity] = useState('');
   const [description, setDescription] = useState('');
-  const [token, setToken] = useState(null);
-
-  useEffect(() => {
-    const checkToken = async () => {
-      const token = await AsyncStorage.getItem('userToken');
-      if(token){
-        setToken(token);
-      }
-    }
-    checkToken()
-  }, [])
-
   const UploadImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -39,43 +23,12 @@ export default function UploadProduct() {
         setImage(result.assets[0].uri);
       }
     } catch (error) {
-      console.log('An error occurred: ', error);
+      alert('Error Upload TC 1')
     }
   };
 
-  const extractFilename = (uri) => {
-    const parts = uri.split('/');
-    return parts[parts.length - 1];
-  };
-
   const handleSubmit = async() => {
-    const filename = image ? extractFilename(image) : null;
-    const productData = {
-      p_name: productName,
-      p_price: productPrice,
-      p_brand_name: brandName,
-      p_qty: quantity,
-      p_description: description,
-      p_image: filename,
-      token: token
-    };
-
     alert('Image Upload Successful');
-
-    // const res = await axios.post(
-    //   'http://127.0.0.1:8800/api/prod/add-prod',
-    //   productData,
-    //   {
-    //     headers: {
-    //       authorization: `Bearer ${token}`
-    //     }
-    //   }
-    // );
-    // if(res.data.status){
-    //   console.log('Success',res.data);
-    // }
-    // console.log(res.data);
-    
   };
 
   return (
@@ -152,8 +105,8 @@ export default function UploadProduct() {
             borderRadius: 10,
             paddingVertical: 10,
             paddingHorizontal: 20,
-            flexDirection: 'row', // Align items in a row
-            alignItems: 'center', // Center vertically
+            flexDirection: 'row',
+            alignItems: 'center',
           }}
         >
           <Icon.Upload stroke="white" style={{ marginRight: 10 }} />

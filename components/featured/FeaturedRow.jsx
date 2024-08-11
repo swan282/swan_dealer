@@ -1,6 +1,5 @@
-import { View, Text , SafeAreaView, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text ,TouchableOpacity } from 'react-native'
 import React from 'react'
-import * as Icon from "react-native-feather";
 
 export default function FeaturedRow({data, index}) {
   return (
