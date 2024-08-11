@@ -14,18 +14,25 @@ export default function OTPVerify({ route }) {
   const handleOTP = async () =>{
     setLoading(true);
     try {
-      const response = await axios.get('http://192.168.1.4:8800/api/dist/reg/otp-verify', {
-        params: {
-            otp: otp,
-            email: email
-        }
-      }); 
-
-      if(response.data.status){
-          navigation.navigate('Register', {email});
+      if(otp === '23984576'){
+        navigation.navigate('Register', {email});
       }else{
-          console.log(response.data);   
+        alert('Please enter 23984576. Because app is still in development mode')
       }
+      console.log(otp);
+      // api call start
+      // const response = await axios.get('http://192.168.1.7:8800/api/dist/reg/otp-verify', {
+      //   params: {
+      //       otp: otp,
+      //       email: email
+      //   }
+      // }); 
+
+      // if(response.data.status){
+      //     navigation.navigate('Register', {email});
+      // }else{
+      //     console.log(response.data);   
+      // }
     } catch (error) {
         console.log('OTP test',error.message);
     }finally{
@@ -49,7 +56,7 @@ export default function OTPVerify({ route }) {
         style={{ marginRight: 25 }}
         value={otp}
         onChangeText={setOtp}
-        keyboardType="number"
+        keyboardType="numeric"
         />
         <TouchableOpacity 
             className="p-4 ml-6 mr-6 rounded-md"

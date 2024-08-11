@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native';
 import avatar from "../../assets/avatar.jpeg";
 
-export default function Sales() {
+export default function Orders() {
   return (
     <View>
       <View style={styles.profileContainer}>
@@ -12,7 +12,7 @@ export default function Sales() {
           />
           <View style={styles.textContainer}>
             <Text style={styles.userName}>Hello, Bishal Deb</Text>
-            <Text style={styles.userEmail}>No Transaction to Display</Text>
+            <Text style={styles.userEmail}>No Orders To display</Text>
           </View>
         </View>
       </View>

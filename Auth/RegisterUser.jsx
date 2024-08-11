@@ -21,15 +21,16 @@ export default function RegisterUser({route}) {
     const [loading, setLoading] = useState(false);
     const handleSignUp = async () => {
         try {
-            setLoading(true);
-            const response = await axios.post('http://192.168.1.4:8800/api/dist/reg/dealer-create', userData);
+            navigation.navigate('Dashboard');
+            // setLoading(true);
+            // const response = await axios.post('http://192.168.1.7:8800/api/dist/reg/dealer-create', userData);
 
-            if(response.data.status){
-                await AsyncStorage.setItem('userToken', response.data.token)
-                navigation.navigate('Dashboard');
-            }else{
-                console.log(response.data,userData);
-            }
+            // if(response.data.status){
+            //     await AsyncStorage.setItem('userToken', response.data.token)
+            //     navigation.navigate('Dashboard');
+            // }else{
+            //     console.log(response.data,userData);
+            // }
         } catch (error) {
             console.log(error.message);
         }finally {

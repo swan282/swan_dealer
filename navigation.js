@@ -13,26 +13,37 @@ import Dashboard from './components/Dashboard/Dashboard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import UploadProduct from './screen/UploadProduct';
+import Sales from './components/Sales/Sales';
+import Orders from './components/orders/Orders';
+import PendingOrders from './components/pending/PendingOrders';
+import AllProducts from './components/Products/AllProducts';
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
-  const [initialRoute, setInitialRoute] =useState('SignUp')
-  const [loading, setLoading] = useState(true)
+  // const [initialRoute, setInitialRoute] =useState('SignUp')
+  // const [loading, setLoading] = useState(true)
+  const initialRoute = "SignUp";
+  // useEffect(() => {
+  //   const checkToken = async () => {
+  //     try {
+  //       const token = await AsyncStorage.getItem('userToken');
+  //       console.log('Token:', token);
+  //       if(token){
+  //         setInitialRoute('Dashboard');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error retrieving token:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   checkToken();
+  // }, []);
+  
 
-  useEffect(() => {
-    const checkToken = async () => {
-      const token = await AsyncStorage.getItem('userToken');
-      if(token){
-        setInitialRoute('Dashboard')
-      }
-      setLoading(false)
-    }
-    checkToken()
-  }, [])
-
-  if(loading){
-    return null;
-  }
+  // if(loading){
+  //   return null;
+  // }
 
   return (
     <NavigationContainer>
@@ -45,6 +56,10 @@ export default function Navigation() {
             <Stack.Screen name="Register" component={RegisterUser} />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="Upload" component={UploadProduct} />
+            <Stack.Screen name="Sales" component={Sales} />
+            <Stack.Screen name="Orders" component={Orders} />
+            <Stack.Screen name="Pending" component={PendingOrders} />
+            <Stack.Screen name="AllProducts" component={AllProducts} />
         </Stack.Navigator>
     </NavigationContainer>
   );

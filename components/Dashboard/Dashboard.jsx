@@ -26,17 +26,10 @@ export default function Dashboard() {
         tabBarShowLabel: false,
         tabBarStyle: {
           position: 'absolute',
-          // bottom: 20,
-          // left: 100,
-          // right: 100,
-          // elevation: 20, // For Android
           backgroundColor: '#9daf9b',
-          // borderRadius: 60,
           height: 110,
-          shadowColor: '#522258', // For iOS
-          shadowOffset: { width: 10, height: 5 }, // For iOS
-          // shadowOpacity: 1, // For iOS
-          // shadowRadius: 6.27, // For iOS
+          shadowColor: '#522258',
+          shadowOffset: { width: 10, height: 5 },
         },
       }}
     >
@@ -93,10 +86,10 @@ const style = StyleSheet.create({
     backgroundColor: '#8C3061',
   },
   shadow: {
-    shadowColor: '#fffff', // Shadow color for iOS
-    shadowOffset: { width: 0, height: 10 }, // Shadow offset for iOS
-    shadowOpacity: 0.9, // Shadow opacity for iOS
-    shadowRadius: 10, // Shadow radius for iOS
-    elevation: 10, // Shadow elevation for Android
+    shadowColor: '#fffff',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.9,
+    shadowRadius: 10,
+    elevation: 10,
   },
 })

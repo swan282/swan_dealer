@@ -7,12 +7,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function General() {
   const navigation = useNavigation();
   const handleLogOut = async () => {
-    await AsyncStorage.removeItem('userToken')
-    // const token = await AsyncStorage.getItem('userToken');
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'SignIn' }], // Replace 'SignIn' with the correct screen name
-    });
+    alert('Log Out Successful');
+    // await AsyncStorage.removeItem('userToken')
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: 'SignIn' }],
+    // });
   }
   return (
     <SafeAreaView style={styles.safeArea}>

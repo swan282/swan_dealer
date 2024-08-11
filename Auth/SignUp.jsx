@@ -13,13 +13,15 @@ const SignUp = () => {
     const handleEmail = async () => {
         setLoading(true);
         try {
-            const response = await axios.post('http://192.168.1.4:8800/api/dist/reg/dealer-send-otp', {email})
-            if(response.data.status){
-                await AsyncStorage.setItem('userToken', response.data.token)
+            if(email === 'swan.developer@gmail.com') {
                 navigation.navigate('OTP', {email});
-            }else{
-                console.log(response.data);   
             }
+            // const response = await axios.post('http://192.168.1.7:8800/api/dist/reg/dealer-send-otp', {email})
+            // if(response.data.status){
+            //     navigation.navigate('OTP', {email});
+            // }else{
+            //     console.log(response.data);   
+            // }
         } catch (error) {
             console.log('OTP test',error.message);
         } finally {

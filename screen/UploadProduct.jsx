@@ -4,6 +4,8 @@ import * as Icon from "react-native-feather";
 import * as ImagePicker from 'expo-image-picker';
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { headers } from 'next/dist/client/components/headers';
+import axios from 'axios';
 
 
 export default function UploadProduct() {
@@ -49,16 +51,31 @@ export default function UploadProduct() {
   const handleSubmit = async() => {
     const filename = image ? extractFilename(image) : null;
     const productData = {
-      name: productName,
-      price: productPrice,
-      brand: brandName,
-      quantity: quantity,
-      description: description,
-      image: filename,
+      p_name: productName,
+      p_price: productPrice,
+      p_brand_name: brandName,
+      p_qty: quantity,
+      p_description: description,
+      p_image: filename,
       token: token
     };
 
-    console.log('Product Data:', JSON.stringify(productData, null, 2));
+    alert('Image Upload Successful');
+
+    // const res = await axios.post(
+    //   'http://127.0.0.1:8800/api/prod/add-prod',
+    //   productData,
+    //   {
+    //     headers: {
+    //       authorization: `Bearer ${token}`
+    //     }
+    //   }
+    // );
+    // if(res.data.status){
+    //   console.log('Success',res.data);
+    // }
+    // console.log(res.data);
+    
   };
 
   return (

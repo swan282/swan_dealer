@@ -17,8 +17,10 @@ export default function SignIn() {
     try {
       setLoading(true);
       const data = { d_email: email, d_password: password}
-      const res = await axios.post('http://192.168.1.4:8800/api/dist/reg/dealer-login', data);
+      const res = await axios.post('http://192.168.1.7:8800/api/dist/reg/dealer-login', data);
+      console.log(res.data);
       if(res.data.status){
+
         await AsyncStorage.setItem('userToken', res.data.token)
         navigator.navigate('Dashboard')
       }

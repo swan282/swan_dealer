@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import avatar from "../assets/avatar.jpeg";
 import * as Icon from "react-native-feather";
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
@@ -12,17 +12,17 @@ export default function HomeScreen() {
   const navigator = useNavigation();
 
   const fetchUser = async () => {
-    const token = await AsyncStorage.getItem('userToken');
-    try {
-      const response = await axios.get('http://192.168.1.4:8800/api/dist/login-user', {
-        headers: {
-          authorization: `Bearer ${token}`
-        }
-      });
-      setUser(response.data.data);
-    } catch (error) {
-      console.error('Error fetching user:', error);
-    }
+    // const token = await AsyncStorage.getItem('userToken');
+    // try {
+    //   const response = await axios.get('http://192.168.1.7:8800/api/dist/login-user', {
+    //     headers: {
+    //       authorization: `Bearer ${token}`
+    //     }
+    //   });
+    //   setUser(response.data.data);
+    // } catch (error) {
+    //   console.error('Error fetching user:', error);
+    // }
   };
   
   useEffect(() => {
@@ -39,14 +39,14 @@ export default function HomeScreen() {
             style={styles.avatar}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.userName}>Hello, {user?.d_name}</Text>
-            <Text style={styles.userEmail}>{user?.d_email}</Text>
+            <Text style={styles.userName}>Hello, Swan Developer</Text>
+            <Text style={styles.userEmail}>swan.dev@theswann.com</Text>
           </View>
         </View>
       </View>
       <View style={styles.textContainer2}>
-        <Text className="mt-3" style={styles.userName}>Business Name: {user?.d_s_name}</Text>
-        <Text className="" style={styles.userEmail}>Location: {user?.d_location}, Pin: {user?.d_zip}</Text>
+        <Text className="mt-3" style={styles.userName}>Business Name: Bishal Deb</Text>
+        <Text className="" style={styles.userEmail}>Location: Udharband, Pin:788030</Text>
       </View>
       <TouchableOpacity style={styles.search} className="flex-row" onPress={() =>  navigator.navigate('Upload')}>
         <Icon.Upload width="20" height="20" className="ml-20" stroke="black" />
@@ -55,15 +55,14 @@ export default function HomeScreen() {
 
       {/* Circles with Icons */}
       <View style={styles.circlesContainer}>
-        <TouchableOpacity style={styles.circleItem}>
+        <TouchableOpacity style={styles.circleItem} onPress={()=> navigator.navigate('Sales')}>
           <View style={styles.circle}>
-            {/* <Icon.PieChart stroke="black" width={20} height={20} /> */}
             <Text>2000</Text>
           </View>
           <Text style={styles.circleText}>Total Sales</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.circleItem}>
+        <TouchableOpacity style={styles.circleItem} onPress={()=> navigator.navigate('Orders')}>
           <View style={styles.circle}>
             {/* <Icon.ShoppingBag stroke="black" width={20} height={20} /> */}
             <Text>20</Text>
@@ -71,7 +70,7 @@ export default function HomeScreen() {
           <Text style={styles.circleText}>Total Orders</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.circleItem}>
+        <TouchableOpacity style={styles.circleItem} onPress={()=> navigator.navigate('Pending')}>
           <View style={styles.circle}>
             {/* <Icon.ShoppingCart stroke="black" width={20} height={20} /> */}
             <Text>20</Text>
@@ -79,7 +78,7 @@ export default function HomeScreen() {
           <Text style={styles.circleText}>Pending</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.circleItem}>
+        <TouchableOpacity style={styles.circleItem} onPress={()=> navigator.navigate('AllProducts')}>
           <View style={styles.circle}>
             <Text>30</Text>
           </View>
