@@ -1,9 +1,10 @@
 import { StyleSheet, View, Text,Image } from 'react-native';
+import SIcon from '../../assets/noData.png'
 import avatar from "../../assets/avatar.jpeg";
 
 export default function Sales() {
   return (
-    <View>
+    <View className='bg-white'>
       <View style={styles.profileContainer}>
         <View style={styles.profileContent}>
           <Image
@@ -12,14 +13,30 @@ export default function Sales() {
           />
           <View style={styles.textContainer}>
             <Text style={styles.userName}>Hello, Bishal Deb</Text>
-            <Text style={styles.userEmail}>No Transaction to Display</Text>
+            <Text style={styles.userEmail}>swan.dev@theswann.com</Text>
           </View>
         </View>
+      </View>
+      <View style={styles.textContainer2}>
+        <Text className="mt-3" style={styles.userName}>Business Name: Bishal Deb</Text>
+        <Text className="" style={styles.userEmail}>Location: Udharband, Pin:788030</Text>
+      </View>
+      <Text className='mt-10 pt-10 ml-10 font-bold' style={{fontSize: 19 }}>No Sales Data Found : (</Text>
+      <Text className='mt-2 ml-10' style={{fontSize: 14 }}>Our Swan Retail App development Is in Progress</Text>
+      <Text className='ml-10' style={{fontSize: 14 }}>Once Published We will Notify You.</Text>
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={SIcon}/>
       </View>
     </View>
   )
 }
 const styles = StyleSheet.create({
+    image: {
+      width: 340,
+      height: 250,
+      marginHorizontal: 9,
+      marginTop: 3,
+    },
     comments: {
       marginTop: 10,
       marginLeft: 20,
@@ -52,7 +69,6 @@ const styles = StyleSheet.create({
     productPrice: {
       marginLeft: 20,
       fontSize: 15,
-      // fontWeight: 'bold',
       color: 'white',
     },
     profileContainer: {
@@ -146,4 +162,13 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 12,
     },
+    imageContainer: {
+      backgroundColor: '',
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingHorizontal: 24,
+      paddingTop: 3,
+      marginTop: 65,
+      marginBottom: 500,
+  },
 });

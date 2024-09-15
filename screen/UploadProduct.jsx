@@ -3,8 +3,10 @@ import { StyleSheet, View, Text, SafeAreaView, Image, TextInput, TouchableOpacit
 import * as Icon from "react-native-feather";
 import * as ImagePicker from 'expo-image-picker';
 import {useState} from 'react';
+import { products as initialProducts } from '../constances';
 
 export default function UploadProduct() {
+  const [products, setProducts] = useState(initialProducts);
   const [image, setImage] = useState(null);
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
@@ -28,6 +30,16 @@ export default function UploadProduct() {
   };
 
   const handleSubmit = async() => {
+    const pData = {
+      id: products.length + 1,
+      p_name: productName,
+      p_price: productPrice,
+      p_brand: brandName,
+      p_rating: 0,
+      p_image: image,
+      p_qty: quantity
+    }
+    setProducts([...products, pData]);
     alert('Image Upload Successful');
   };
 

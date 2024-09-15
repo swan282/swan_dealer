@@ -13,7 +13,8 @@ import AllProducts from './components/Products/AllProducts';
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
-  const initialRoute = "SignUp";
+  const test = 'test';
+  const initialRoute = test === 'test' ? "SignUp" : "Dashboard";
 
   return (
     <NavigationContainer>

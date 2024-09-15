@@ -1,4 +1,5 @@
-import SIcon from "../assets/tree.png";
+// import SIcon from "../assets/tree.png";
+import SIcon from "../assets/verify.png";
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
@@ -29,8 +30,8 @@ const SignUp = () => {
         >
             <SafeAreaView className="bg-white flex-1">
                 <StatusBar barStyle="dark-content"/>
-                <View className="flex-row item-center px-6 pt-11 pb-6 mt-6 ml-7">
-                    <Image style={{width:340, height:250}} className="mx-2" source={SIcon}/>
+                <View className="flex-row item-center px-6 pt-11 pb-6 mt-6 ml-7 mb-3">
+                    <Image style={{width:280, height:250}} className="mx-2" source={SIcon}/>
                 </View>
                 <Text className="text-3xl ml-9 font-bold text-left mr-1">Sign Up as Dealer</Text>
                 <Text className="text-left mt-3 ml-9 mr-1">Signing Up as a Distributor allows you to sell and </Text>
@@ -48,7 +49,7 @@ const SignUp = () => {
                     />
                      <TouchableOpacity
                         className="p-4 ml-6 mr-6 rounded-md"
-                        style={{ backgroundColor: '#522258' }}
+                        style={{ backgroundColor: '#9daf9b' }}
                         onPress={handleEmail}
                         disabled={loading}
                     >

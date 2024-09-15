@@ -48,7 +48,7 @@ export const products = [
         p_brand: 'Mens Company',
         p_price: 500,
         p_rating: 5,
-        p_image: require('../assets/hair_prod.jpg'),
+        p_image: require('../assets/prod_3.jpg'),
     },
     {
         id: 3,
@@ -57,7 +57,7 @@ export const products = [
         p_brand: 'Mens Company',
         p_price: 500,
         p_rating: 5,
-        p_image: require('../assets/hair_prod.jpg'),
+        p_image: require('../assets/prod_4.jpg'),
     },
     {
         id: 4,
@@ -66,6 +66,6 @@ export const products = [
         p_brand: 'Mens Company',
         p_price: 500,
         p_rating: 5,
-        p_image: require('../assets/hair_prod.jpg'),
+        p_image: require('../assets/prod_6.jpg'),
     }
 ]

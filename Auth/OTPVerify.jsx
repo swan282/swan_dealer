@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import SIcon from "../assets/otp_2.png";
+import SIcon from "../assets/otpVerify.png";
 import { useNavigation } from '@react-navigation/native';
 import {View, Text, SafeAreaView, Image, TextInput, TouchableOpacity,ActivityIndicator } from 'react-native';
 
@@ -16,7 +16,7 @@ export default function OTPVerify({ route }) {
       if(otp === '23984576'){
         navigation.navigate('Register', {email});
       }else{
-        alert('Please enter 23984576. Because app is still in development mode')
+        alert('Please enter 23984576. Because app is in development mode')
       }
     } catch (error) {
         alert('Something went wrong.From OTP')
@@ -46,7 +46,7 @@ export default function OTPVerify({ route }) {
         <TouchableOpacity 
             className="p-4 ml-6 mr-6 rounded-md"
             onPress={handleOTP}
-            style={{ backgroundColor: '#522258' }}
+            style={{ backgroundColor: '#9daf9b' }}
           >
           {loading ? (
             <ActivityIndicator color="#fff" />

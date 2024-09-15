@@ -1,9 +1,11 @@
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native';
 import avatar from "../../assets/avatar.jpeg";
+import { products } from '../../constances';
+import HairProd from "../../assets/hair_prod.jpg";
 
 export default function AllProducts() {
   return (
-    <View>
+    <ScrollView style={{marginTop: -2}}>
       <View style={styles.profileContainer}>
         <View style={styles.profileContent}>
           <Image
@@ -12,14 +14,53 @@ export default function AllProducts() {
           />
           <View style={styles.textContainer}>
             <Text style={styles.userName}>Hello, Bishal Deb</Text>
-            <Text style={styles.userEmail}>No Products To display</Text>
+            <Text style={styles.userEmail}>swan.dev@theswann.com</Text>
           </View>
         </View>
       </View>
-    </View>
+      <View style={styles.textContainer2}>
+        <Text className="mt-3" style={styles.userName}>Business Name: Bishal Deb</Text>
+        <Text className="" style={styles.userEmail}>Location: Udharband, Pin:788030</Text>
+      </View>
+      <ScrollView className="mt-10 pt-3">
+      <Text className="mb-2 ml-10 font-bold text-2xl">Your Products</Text>
+        {
+          products.map((prod, index) => {
+            return (
+              <ScrollView key={index} style={styles.productContainer}>
+                <View className="flex-row">
+                  <Text className="mt-4 ml-3">Product: {prod?.p_name}</Text>
+                  <Text className="mt-4 ml-3">Brand Name: {prod?.p_brand}</Text>
+                </View>
+                <View className="flex-row">
+                  <Text className="mt-2 ml-3">Price: {prod?.p_price}</Text>
+                  <Text className="mt-2 ml-20 pl-10">Rating: {prod?.p_rating}</Text>
+                </View>
+                <Text className="mt-2 ml-3">Order Status: False</Text>
+                <Image source={prod?.p_image} style={{width:360, marginTop: 32, height: 100, borderRadius: 7}} />
+              </ScrollView>
+            )
+          })
+        }
+      </ScrollView>
+    </ScrollView>
   )
 }
 const styles = StyleSheet.create({
+    productContainer: {
+      marginTop: 10,
+      marginBottom: 15,
+      marginLeft: 30,
+      borderRadius: 7,
+      width:360,
+      height: 220,
+      backgroundColor: "#9daf9b",
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 }, // X and Y offset
+      shadowOpacity: 0.25, // Shadow transparency
+      shadowRadius: 3.84, // Blur radius
+      elevation: 5, // Required for Android shadow
+    },
     comments: {
       marginTop: 10,
       marginLeft: 20,

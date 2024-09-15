@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         marginRight: 24,
         marginTop: 10,
         borderRadius: 8,
-        backgroundColor: '#522258',
+        backgroundColor: '#9daf9b',
     },
     buttonText: {
         color: 'white',

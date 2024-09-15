@@ -1,8 +1,10 @@
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Icon from "react-native-feather";
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 export default function General() {
+  const navigator = useNavigation();
   const handleLogOut = async () => {
     alert('Log Out Successful');
   }
@@ -20,19 +22,25 @@ export default function General() {
         <View style={styles.divider} />
         <View style={styles.row}>
           <Icon.Package style={styles.icon} stroke="black" />
-          <Text style={styles.rowText}>My Orders</Text>
+          <TouchableOpacity onPress={() => navigator.navigate('Orders')}>
+            <Text style={styles.rowText}>My Orders</Text>
+          </TouchableOpacity>
           <Icon.ArrowRightCircle style={styles.arrowIcon} stroke="black" />
         </View>
         <View style={styles.divider} />
         <View style={styles.row}>
           <Icon.PieChart style={styles.icon} stroke="black" />
-          <Text style={styles.rowText}>Total Sales</Text>
+          <TouchableOpacity onPress={() => navigator.navigate('Sales')}>
+            <Text style={styles.rowText}>Total Sales</Text>
+          </TouchableOpacity>
           <Icon.ArrowRightCircle style={styles.arrowIcon} stroke="black" />
         </View>
         <View style={styles.divider} />
         <View style={styles.row}>
-          <Icon.Info style={styles.icon} stroke="black" />
-          <Text style={styles.rowText}>About Us</Text>
+          <Icon.ShoppingBag style={styles.icon} stroke="black" />
+          <TouchableOpacity onPress={() => navigator.navigate('AllProducts')}>
+            <Text style={styles.rowText}>My Products</Text>
+          </TouchableOpacity>
           <Icon.ArrowRightCircle style={styles.arrowIcon} stroke="black" />
         </View>
       </View>
